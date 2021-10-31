@@ -14,14 +14,16 @@ INSTRUCTIONS TO RUN STARZPLAY ASSIGNMENT PROJECT
 
 5. open the starzplay-assignment project in IntelliJ (Recommended) IDE or any other IDE of your choosing
 
-6. place the SQL file namely V1_0__create_payment_schema.sql in the resources/db/migration relative to the project root directory. (One will already be placed there. Delete the file or let it be there)
+6. open the application.properties file and replace the placeholders in spring.datasource.username & spring.datasource.password with your local DB's username and password
 
-7. run the following command in the IDE terminal or any other terminal relative to the working directory: COMMAND = (mvn clean flyway:migrate)
+7. place the SQL file namely V1_0__create_payment_schema.sql in the resources/db/migration relative to the project root directory. (One will already be placed there. Delete the file or let it be there)
 
-8. build the starzplay-application app with the following command: COMMAND = (mvn clean install -DskipTests)
+8. run the following command in the IDE terminal or any other terminal relative to the working directory: COMMAND = (mvn clean flyway:migrate)
 
-9. run the following command: COMMAND = (java -jar target/starzplay-0.0.1-SNAPSHOT.jar) OR simply press the 'run' button on your IDE.
+9. build the starzplay-application app with the following command: COMMAND = (mvn clean install -DskipTests)
 
-10. use POSTMAN or any application for hitting the endpoints (as stated in the assignment document) exposed on the following address: URL = (http://localhost:8080/api/v1.0/configuration/payment-methods)
+10. run the following command: COMMAND = (java -jar target/starzplay-0.0.1-SNAPSHOT.jar) OR simply press the 'run' button on your IDE.
 
-11. open the Payment API Docs.xlsx sheet to see sample API request/response and URLs
+11. use POSTMAN or any application for hitting the endpoints (as stated in the assignment document) exposed on the following address: URL = (http://localhost:8080/api/v1.0/configuration/payment-methods)
+
+12. open the Payment API Docs.xlsx sheet to see sample API request/response and URLs
