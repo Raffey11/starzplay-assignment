@@ -1,11 +1,7 @@
 package com.starzplaydemo.starzplay.repositories;
 
 import com.starzplaydemo.starzplay.dtos.PaymentMethodDto;
-import com.starzplaydemo.starzplay.dtos.PaymentPlanDto;
 import com.starzplaydemo.starzplay.entities.PaymentMethodEntity;
-import com.starzplaydemo.starzplay.entities.PaymentPlanEntity;
-import com.starzplaydemo.starzplay.exceptions.PaymentServiceException;
-import com.starzplaydemo.starzplay.utils.constants.Errors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.util.CollectionUtils;
@@ -29,7 +25,6 @@ public class PaymentMethodRepository {
                 .name(paymentMethodEntity.getName())
                 .displayName(paymentMethodEntity.getDisplayName())
                 .paymentType(paymentMethodEntity.getPaymentType())
-//                .paymentPlans(getPaymentPlans(paymentMethodEntity.getPaymentPlans()))
                 .build();
     }
 
@@ -41,7 +36,6 @@ public class PaymentMethodRepository {
                 .name(paymentMethodEntity.getName())
                 .displayName(paymentMethodEntity.getDisplayName())
                 .paymentType(paymentMethodEntity.getPaymentType())
-//                .paymentPlans(getPaymentPlans(paymentMethodEntity.getPaymentPlans()))
                 .build();
     }
 
@@ -55,7 +49,6 @@ public class PaymentMethodRepository {
                     .name(paymentMethodEntity.getName())
                     .displayName(paymentMethodEntity.getDisplayName())
                     .paymentType(paymentMethodEntity.getPaymentType())
-//                    .paymentPlans(getPaymentPlans(paymentMethodEntity.getPaymentPlans()))
                     .build());
         }
         return paymentMethods;
@@ -71,26 +64,5 @@ public class PaymentMethodRepository {
             return paymentMethodDto;
         }
         return paymentMethodBaseRepository.save(PaymentMethodEntity.from(paymentMethodDto)).convertToDto();
-    }
-
-    private void updatePaymentMethodFields(PaymentMethodDto paymentMethodDto, PaymentMethodEntity paymentMethodEntity) {
-        paymentMethodEntity.setName(paymentMethodDto.getName());
-        paymentMethodEntity.setDisplayName(paymentMethodDto.getDisplayName());
-        paymentMethodEntity.setPaymentType(paymentMethodDto.getPaymentType());
-    }
-
-    private List<PaymentPlanDto> getPaymentPlans(Set<PaymentPlanEntity> paymentPlanEntities) {
-        List<PaymentPlanDto> paymentPlans = new ArrayList<>();
-        for (PaymentPlanEntity paymentPlanEntity : paymentPlanEntities) {
-            paymentPlans.add(PaymentPlanDto.builder()
-                    .id(paymentPlanEntity.getId())
-                    .netAmount(paymentPlanEntity.getNetAmount())
-                    .grossAmount(paymentPlanEntity.getGrossAmount())
-                    .taxAmount(paymentPlanEntity.getTaxAmount())
-                    .currency(paymentPlanEntity.getCurrency())
-                    .duration(paymentPlanEntity.getDuration())
-                    .build());
-        }
-        return paymentPlans;
     }
 }

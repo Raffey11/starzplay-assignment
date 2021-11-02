@@ -139,7 +139,6 @@ public class PaymentServiceImpl implements PaymentService {
                 throw new PaymentServiceException(Errors.MISSING_FIELDS_FOR_PAYMENT_PLAN_CREATE);
             }
         } else {
-            //TODO: check for duplicate payment plans
             boolean isAtLeastOneFieldPresent = isAtLeastOneFieldPresentInPaymentPlanForUpdate(paymentPlanDto);
             if (isAtLeastOneFieldPresent) {
                 boolean isThePaymentPlanPartOfThePaymentMethod = isThePaymentPlanAssociatedWithThePaymentMethod(paymentPlanDto, paymentMethodDto);
@@ -177,21 +176,6 @@ public class PaymentServiceImpl implements PaymentService {
                 nonNull(paymentPlanDto.getCurrency()) &&
                 nonNull(paymentPlanDto.getDuration());
     }
-
-//    private boolean areAllFieldsPresentForPaymentMethodCreation(PaymentMethodDto paymentMethodDto) {
-//        boolean areAllFieldsPresentForPaymentMethodCreation = !StringUtils.isEmpty(paymentMethodDto.getName()) &&
-//                !StringUtils.isEmpty(paymentMethodDto.getDisplayName()) &&
-//                !StringUtils.isEmpty(paymentMethodDto.getPaymentType());
-//
-//        boolean areAnyPaymentPlansPresentAndIfSoAreAllItsFieldsPresent;
-//
-//        if (CollectionUtils.isEmpty(paymentMethodDto.getPaymentPlans())) {
-//            for (PaymentPlanDto paymentPlanDto : paymentMethodDto.getPaymentPlans()) {
-//                areAllFieldsPresentInPaymentPlan(paymentPlanDto);
-//            }
-//        }
-//
-//    }
 
     private PaymentPlanDto createNewPaymentPlan(PaymentPlanDto request, PaymentMethodDto paymentMethodDto) {
         return PaymentPlanDto.builder()

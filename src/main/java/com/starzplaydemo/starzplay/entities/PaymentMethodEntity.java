@@ -1,16 +1,11 @@
 package com.starzplaydemo.starzplay.entities;
 
 import com.starzplaydemo.starzplay.dtos.PaymentMethodDto;
-import com.starzplaydemo.starzplay.dtos.PaymentPlanDto;
 import lombok.*;
 
 import javax.persistence.*;
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.util.*;
-import java.util.stream.Collectors;
-
-import static java.util.Objects.nonNull;
 
 @Builder
 @NoArgsConstructor
@@ -57,16 +52,5 @@ public class PaymentMethodEntity implements Serializable {
                 .displayName(this.getDisplayName())
                 .paymentType(this.getPaymentType())
                 .build();
-    }
-
-    private List<PaymentPlanDto> convertToPaymentPlanDto(Set<PaymentPlanEntity> paymentPlans) {
-        return paymentPlans.stream().map(paymentPlansEntity -> PaymentPlanDto.builder()
-                .id(paymentPlansEntity.getId())
-                .netAmount(paymentPlansEntity.getNetAmount())
-                .taxAmount(paymentPlansEntity.getTaxAmount())
-                .grossAmount(paymentPlansEntity.getGrossAmount())
-                .currency(paymentPlansEntity.getCurrency())
-                .duration(paymentPlansEntity.getDuration())
-                .build()).collect(Collectors.toList());
     }
 }

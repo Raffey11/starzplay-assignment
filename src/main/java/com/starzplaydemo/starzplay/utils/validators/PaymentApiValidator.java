@@ -33,9 +33,6 @@ public class PaymentApiValidator {
     }
 
     private static void validateCreatePaymentMethodApiPaymentPlan(PaymentPlanDto paymentPlan, Map<String, String> errors) {
-//        if (nonNull(paymentPlan.getId())) {
-//            return;
-//        }
         if (isNull(paymentPlan.getNetAmount())) errors.put("paymentPlan.netAmount", Errors.EMPTY_NET_AMOUNT_FIELD);
         if (isNull(paymentPlan.getGrossAmount())) errors.put("paymentPlan.grossAmount", Errors.EMPTY_GROSS_AMOUNT_FIELD);
         if (isNull(paymentPlan.getTaxAmount())) errors.put("paymentPlan.taxAmount", Errors.EMPTY_TAX_AMOUNT_FIELD);
@@ -58,7 +55,6 @@ public class PaymentApiValidator {
     }
 
     private static void validateUpdatePaymentMethodApiPaymentPlan(PaymentPlanDto paymentPlan, Map<String, String> errors) {
-//        if (isNull(paymentPlan.getId())) errors.put("paymentPlan.id", Errors.EMPTY_ID);
         if (nonNull(paymentPlan.getDuration()) && (paymentPlan.getDuration().length() > Constants.MAX_LENGTH || paymentPlan.getDuration().length() < Constants.MIN_LENGTH)) errors.put("paymentPlan.duration", Errors.INVALID_DURATION_FIELD_LENGTH);
         if (nonNull(paymentPlan.getCurrency()) && (paymentPlan.getCurrency().length() > Constants.MAX_LENGTH || paymentPlan.getCurrency().length() < Constants.MIN_LENGTH)) errors.put("paymentPlan.currency", Errors.INVALID_CURRENCY_FIELD_LENGTH);
     }
